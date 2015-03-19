@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:minHeight="?android:attr/listPreferredItemHeight" >
+	
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/layout"
+        >
+		<TextView android:id="@+id/date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="5dip"
+			android:layout_marginTop="8dip"
+			style="@style/TextViewEntityDate"
+	    />
+	
+	    <TextView android:id="@+id/comment"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/date"
+			android:layout_alignLeft="@+id/date"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:textColor="#6d6d6d"
+			android:textStyle="italic"
+		/>
+    </RelativeLayout>
+    
+    <TextView android:id="@+id/days"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_alignParentRight="true"
+		android:layout_marginTop="8dip"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+	/>
+
+</RelativeLayout>

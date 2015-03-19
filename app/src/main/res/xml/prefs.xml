@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/pref_group_sdcard">
+		<Preference
+			android:title="@string/save_on_sdcard"
+			android:summary="@string/save_on_sdcard_summary"
+			android:key="pref_save_sdcard" />
+		
+		<Preference
+			android:title="@string/restore_from_sdcard"
+			android:summary="@string/restore_from_sdcard_summary"
+			android:key="pref_restore_sdcard" />
+	</PreferenceCategory>
+	
+    <PreferenceCategory android:title="@string/pref_group_other">
+		<Preference
+			android:title="@string/remove_all"
+			android:summary="@string/remove_all_summary"
+			android:key="pref_remove_all" />
+		
+		<Preference
+			android:title="@string/about"
+			android:key="pref_about" />
+	</PreferenceCategory>
+</PreferenceScreen>

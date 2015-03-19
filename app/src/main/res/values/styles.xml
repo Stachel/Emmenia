@@ -1,0 +1,33 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	
+    <style name="TextViewNoData">
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">?attr/entityDateColor</item>
+	</style>
+    
+    <style name="TextViewNextDate">
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">?attr/nextDateColor</item>
+	</style>
+	
+    <style name="TextViewEntityDate">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/entityDateColor</item>
+    </style>
+	
+    <style name="ListSeparator">
+        <item name="android:background">?attr/separatorBackgroundColor</item>
+        <item name="android:textColor">?attr/separatorTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="AppThemeLight" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="nextDateColor">@color/next_date_light</item>
+        <item name="entityDateColor">@color/entity_date_light</item>
+        <item name="separatorBackgroundColor">@color/separator_bg_light</item>
+    	<item name="separatorTextColor">@color/separator_color_light</item>
+    </style>
+</resources>

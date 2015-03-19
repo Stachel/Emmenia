@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<RadioGroup
+		android:id="@+id/widgetTheme"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+	
+		<RadioButton
+			android:id="@+id/themeBlack"
+			android:layout_width="match_parent"
+			android:layout_height="?android:attr/listPreferredItemHeight"
+			android:checked="true"
+			android:textAppearance="?android:attr/textAppearanceLarge" 
+			android:text="@string/pref_theme_black" />
+
+		<RadioButton
+			android:id="@+id/themeWhite"
+			android:layout_width="match_parent"
+			android:layout_height="?android:attr/listPreferredItemHeight"
+			android:textAppearance="?android:attr/textAppearanceLarge" 
+			android:text="@string/pref_theme_white" />
+
+	</RadioGroup>
+	
+	<Button
+	    android:id="@+id/btn_widget_ok"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:text="@string/btn_yes" />
+</RelativeLayout>

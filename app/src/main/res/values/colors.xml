@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="next_date_light">#970100</color>
+    <color name="next_date_dark">#68FEFF</color>
+	
+    <color name="entity_date_light">#0E3657</color>
+    <color name="entity_date_dark">#F1C9F8</color>
+    
+    <color name="separator_bg_light">#757678</color>
+    <color name="separator_bg_dark">#8A8987</color>
+    
+    <color name="separator_color_light">#E0FFFF</color>
+    <color name="separator_color_dark">#1F0000</color>        
+
+</resources>
