@@ -11,10 +11,9 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
-import ru.rinastachel.emmenia.MainActivity.OnAddDialogListener;
-import ru.rinastachel.emmenia.MainActivity.OnRemoveDialogListener;
 import ru.rinastachel.emmenia.R;
 import ru.rinastachel.emmenia.data.Entity;
+import ru.rinastachel.emmenia.fragments.MainFragment;
 
 public class Dialogs {
 
@@ -26,7 +25,7 @@ public class Dialogs {
     public static final String NEGATIVE_BUTTON_RESID = "negative_button_resid";
 
 
-    public static Dialog dialogAddEntity (Activity activity, final OnAddDialogListener listener) {
+    public static Dialog dialogAddEntity (Activity activity, final MainFragment.OnAddDialogListener listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 	    builder.setTitle(R.string.add_dialog_title);
 
@@ -51,7 +50,7 @@ public class Dialogs {
 	    return builder.create();
 	}
 
-	public static Dialog dialogRemoveEntity (Activity activity, final Entity entity, final OnRemoveDialogListener listener) {
+	public static Dialog dialogRemoveEntity (Activity activity, final Entity entity, final MainFragment.OnRemoveDialogListener listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 	    builder.setTitle(R.string.remove_dialog_title);
 	    builder.setMessage(activity.getString(R.string.remove_dialog_message, entity.getDate().getFullString()));

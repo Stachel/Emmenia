@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<attr name="nextDateColor" format="color" />
-	<attr name="entityDateColor" format="color" />
-	
-	<attr name="separatorBackgroundColor" format="color" />
-	<attr name="separatorTextColor" format="color" />
-</resources>
