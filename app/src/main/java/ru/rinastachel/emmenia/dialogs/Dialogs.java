@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -68,21 +67,6 @@ public class Dialogs {
          	   dialog.cancel();
             }
         });      
-	    return builder.create();
-	}
-
-	public static Dialog makeConfirmRestoreDialog(Activity activity, OnClickListener positiveListener) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-		
-	    builder.setTitle(R.string.pref_restore_title);
-	    builder.setMessage(R.string.pref_restore_message);
-
-	    builder.setPositiveButton(R.string.btn_yes, positiveListener);
-	    builder.setNegativeButton(R.string.btn_no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-         	   dialog.cancel();
-            }
-        });        
 	    return builder.create();
 	}
 

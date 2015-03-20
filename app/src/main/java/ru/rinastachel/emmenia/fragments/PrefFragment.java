@@ -1,10 +1,10 @@
 package ru.rinastachel.emmenia.fragments;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.view.LayoutInflater;
@@ -20,7 +20,6 @@ import ru.rinastachel.emmenia.data.DataListSaver;
 import ru.rinastachel.emmenia.data.Entity;
 import ru.rinastachel.emmenia.data.EntitySortedList;
 import ru.rinastachel.emmenia.dialogs.AboutDialogFragment;
-import ru.rinastachel.emmenia.dialogs.Dialogs;
 import ru.rinastachel.emmenia.dialogs.TwoButtonDialogFragment;
 import ru.rinastachel.emmenia.exception.BackupDataException;
 import ru.rinastachel.emmenia.exception.RestoreDataException;
@@ -32,6 +31,7 @@ public class PrefFragment extends PreferenceFragment {
     private static final int CHOOSE_FILE_RESTORE = 1;
     private static final int DIALOG_ABOUT = 100;
     private static final int DIALOG_DELETE_ALL = 101;
+    private static final int DIALOG_CONFIRM_RESTORE = 102;
 
     private DataListSaver _listSaver;
 
@@ -86,19 +86,16 @@ public class PrefFragment extends PreferenceFragment {
     private void openAboutDialog() {
         AboutDialogFragment dialog = AboutDialogFragment.newInstance();
         dialog.setTargetFragment(this, DIALOG_ABOUT);
-        dialog.show(getFragmentManager(), "AboutDialogFragment");
+        dialog.show(getFragmentManager(), "DIALOG_ABOUT");
     }
 
     protected void clickRestoreSDCard() {
-        DialogInterface.OnClickListener positiveListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                fileIntent.setType("file/*");
-                startActivityForResult(fileIntent, CHOOSE_FILE_RESTORE);
-            }
-        };
-        Dialogs.makeConfirmRestoreDialog(getActivity(), positiveListener).show();
+
+        Bundle args = new Bundle();
+        args.putInt(TwoButtonDialogFragment.MESSAGE_RESID, R.string.pref_restore_message);
+        TwoButtonDialogFragment dialog = TwoButtonDialogFragment.newInstance(args);
+        dialog.setTargetFragment(this, DIALOG_CONFIRM_RESTORE);
+        dialog.show(getFragmentManager(), "DIALOG_CONFIRM_RESTORE");
     }
 
     protected void clickSaveSDCard() {
@@ -139,15 +136,21 @@ public class PrefFragment extends PreferenceFragment {
                     Toast.makeText(getActivity(), R.string.toast_remove_all_error, Toast.LENGTH_LONG).show();
                 }
                 break;
+
+            case DIALOG_CONFIRM_RESTORE:
+                Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                fileIntent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory() + "/Emmenia/"), "file/*");
+                startActivityForResult(fileIntent, CHOOSE_FILE_RESTORE);
+                break;
         }
     }
 
     private void clickRemoveAll() {
         Bundle args = new Bundle();
-        args.putInt(Dialogs.MESSAGE_RESID, R.string.pref_remove_all_message);
+        args.putInt(TwoButtonDialogFragment.MESSAGE_RESID, R.string.pref_remove_all_message);
         TwoButtonDialogFragment dialog = TwoButtonDialogFragment.newInstance(args);
         dialog.setTargetFragment(this, DIALOG_DELETE_ALL);
-        dialog.show(getFragmentManager(), "TwoButtonDialogFragment");
+        dialog.show(getFragmentManager(), "DIALOG_DELETE_ALL");
     }
 
     private DataListSaver getDataListSaver () {
