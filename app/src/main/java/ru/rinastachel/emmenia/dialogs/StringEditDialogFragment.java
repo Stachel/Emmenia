@@ -1,17 +1,5 @@
 package ru.rinastachel.emmenia.dialogs;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
 /*
 public class StringEditDialogFragment extends DialogFragment {
 

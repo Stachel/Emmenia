@@ -1,13 +1,13 @@
 package ru.rinastachel.emmenia;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 
 import ru.rinastachel.emmenia.fragments.PrefFragment;
 
-public class PrefActivity extends FragmentActivity {
+public class PrefActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
