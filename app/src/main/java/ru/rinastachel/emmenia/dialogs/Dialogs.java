@@ -12,7 +12,6 @@ import android.widget.EditText;
 import java.util.Calendar;
 
 import ru.rinastachel.emmenia.R;
-import ru.rinastachel.emmenia.data.Entity;
 import ru.rinastachel.emmenia.fragments.MainFragment;
 
 public class Dialogs {
@@ -39,25 +38,6 @@ public class Dialogs {
 	            	   dialog.cancel();
 	               }
 	           });      
-	    return builder.create();
-	}
-
-	public static Dialog dialogRemoveEntity (Activity activity, final Entity entity, final MainFragment.OnRemoveDialogListener listener) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-	    builder.setTitle(R.string.remove_dialog_title);
-	    builder.setMessage(activity.getString(R.string.remove_dialog_message, entity.getDate().getFullString()));
-
-	    builder.setPositiveButton(R.string.btn_yes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            	listener.removeEntity(entity);
-            }
-        });
-	    
-	    builder.setNegativeButton(R.string.btn_no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-         	   dialog.cancel();
-            }
-        });      
 	    return builder.create();
 	}
 

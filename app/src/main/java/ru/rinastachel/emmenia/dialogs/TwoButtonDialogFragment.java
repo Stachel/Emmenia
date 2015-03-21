@@ -20,6 +20,7 @@ public class TwoButtonDialogFragment extends DialogFragment {
     public static final String BUNDLE = "key_bundle";
     public static final String POSITIVE_BUTTON_RESID = "positive_button_resid";
     public static final String NEGATIVE_BUTTON_RESID = "negative_button_resid";
+    public static final String MESSAGE = "MESSAGE";
 
     private String _title = null;
     private String _message = null;
@@ -54,6 +55,8 @@ public class TwoButtonDialogFragment extends DialogFragment {
 
         if (args.containsKey(MESSAGE_RESID)) {
             _message = getResources().getString(args.getInt(MESSAGE_RESID));
+        } else if (args.containsKey(MESSAGE)) {
+            _message = args.getString(MESSAGE);
         }
 
         if (args.containsKey(POSITIVE_BUTTON_RESID)) {

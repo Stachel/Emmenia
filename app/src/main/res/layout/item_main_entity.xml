@@ -23,9 +23,7 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/date"
 			android:layout_alignLeft="@+id/date"
-			android:textAppearance="?android:attr/textAppearanceSmall"
-			android:textColor="#6d6d6d"
-			android:textStyle="italic"
+            style="@style/TextViewEntityComment"
 		/>
     </RelativeLayout>
     
@@ -34,7 +32,7 @@
 		android:layout_height="match_parent"
 		android:layout_alignParentRight="true"
 		android:layout_marginTop="8dip"
-		android:textAppearance="?android:attr/textAppearanceLarge"
+        style="@style/TextViewEntityDays"
 	/>
 
 </RelativeLayout>

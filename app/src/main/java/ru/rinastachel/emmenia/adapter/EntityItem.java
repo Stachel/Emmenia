@@ -1,14 +1,14 @@
 package ru.rinastachel.emmenia.adapter;
 
-import ru.rinastachel.emmenia.adapter.MainListAdapter.RowType;
-import ru.rinastachel.emmenia.data.Entity;
-
-import ru.rinastachel.emmenia.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import ru.rinastachel.emmenia.R;
+import ru.rinastachel.emmenia.adapter.MainListAdapter.RowType;
+import ru.rinastachel.emmenia.data.Entity;
 
 public class EntityItem implements Item {
 	
@@ -50,7 +50,11 @@ public class EntityItem implements Item {
         	convertView.setAnimation(anim);
         	_entity.setOld();
         }
-        convertView.setTag(_entity);
+        //convertView.setTag(_entity);
         return convertView;
+    }
+
+    public Entity getEntity() {
+        return _entity;
     }
 }

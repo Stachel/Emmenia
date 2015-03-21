@@ -51,7 +51,7 @@ public class MainListAdapter implements ListAdapter {
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public Item getItem(int position) {
 		return _items.get(position);
 	}
 
@@ -91,6 +91,13 @@ public class MainListAdapter implements ListAdapter {
 			return false;
 		return true;
 	}
+
+    public Entity getEntity(int position) {
+        if (getItem(position) instanceof GroupItem) {
+            return null;
+        }
+        return ((EntityItem)getItem(position)).getEntity();
+    }
 	
 	public void notifyDataChanged(EntitySortedList _list) {
 		_items.clear();
