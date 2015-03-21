@@ -1,5 +1,8 @@
 package ru.rinastachel.emmenia.data;
 
+import android.content.Context;
+import android.os.Environment;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,15 +11,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import ru.rinastachel.emmenia.exception.BackupDataException;
 import ru.rinastachel.emmenia.exception.RestoreDataException;
-import android.content.Context;
-import android.os.Environment;
 
 public class DataListSaver {
 	private Context _context;
@@ -45,17 +45,17 @@ public class DataListSaver {
 		fos.close();
 	}
 	
-	public ArrayList<Entity> readData() throws FileNotFoundException, IOException, ClassNotFoundException  {
+	public ArrayList<Entity> readData() throws IOException, ClassNotFoundException  {
 		FileInputStream fis = _context.openFileInput(FILENAME);
 		return readDataFromStream (fis);
 	}
 	
-	public ArrayList<Entity> readDataFromFile(String filePath) throws FileNotFoundException, IOException, ClassNotFoundException  {
+	public ArrayList<Entity> readDataFromFile(String filePath) throws IOException, ClassNotFoundException  {
 	    FileInputStream fis = new FileInputStream(new File(filePath));
 	    return readDataFromStream (fis);
 	}
 	
-	private ArrayList<Entity> readDataFromStream(FileInputStream fis) throws StreamCorruptedException, IOException, ClassNotFoundException {
+	private ArrayList<Entity> readDataFromStream(FileInputStream fis) throws IOException, ClassNotFoundException {
 		ArrayList<Entity> list = new ArrayList<Entity>();
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		try {
@@ -98,8 +98,7 @@ public class DataListSaver {
 	
 	public ArrayList<Entity> restoreFromSDCard(String path) throws RestoreDataException {
 		try {
-			ArrayList<Entity> list = readDataFromFile(path);
-			return list;
+			return readDataFromFile(path);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RestoreDataException();
@@ -108,12 +107,12 @@ public class DataListSaver {
 
 	private File createBackupFilename() {
 		File path = new File(Environment.getExternalStorageDirectory(), BACKUP_PATH);
-		if (!path.exists())
-			path.mkdir();
+		if (!path.exists()) {
+            path.mkdir();
+        }
 		String timestamp = (new Date()).getDashString();
 		String filename = BACKUP_FILENAME + timestamp + BACKUP_EXTENSION;
-		File file = new File (path, filename);
-		return file;
+		return new File (path, filename);
 	}
 	
 	public void copy(FileInputStream inStream, FileOutputStream outStream) throws IOException {

@@ -25,8 +25,6 @@ public class AboutDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Bundle args = getArguments();
-
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
         dialog.setTitle(R.string.about);
 
@@ -56,7 +54,6 @@ public class AboutDialogFragment extends DialogFragment {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(Dialogs.BUNDLE, getArguments());
         getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 

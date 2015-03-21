@@ -23,7 +23,7 @@ public class PrefManager {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
 	    Editor editor = sp.edit();
 	    editor.putInt(PREF_THEME_WIDGET + widgetID, theme);
-	    editor.commit();
+	    editor.apply();
 	}
 
 	public static int getThemeWidget(Context ctx, int widgetID) {
@@ -36,7 +36,7 @@ public class PrefManager {
 	    Editor editor = sp.edit();
 	    editor.putLong(PREF_LAST_DATE, last.getMillisecs());
 	    editor.putLong(PREF_NEXT_DATE, next.getMillisecs());
-	    editor.commit();
+        editor.apply();
 	}
 	
 	public static Date getWidgetLastDate (Context ctx) {

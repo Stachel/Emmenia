@@ -66,11 +66,7 @@ public class Entity implements Serializable, Comparable<Entity>{
 	public int calcDiff(Entity prev) {
 		return _date.calcDiff(prev.getDate());
 	}
-	
-	public void setNew() {
-		_isNew = true;
-	}
-	
+
 	public void setOld() {
 		_isNew = false;
 	}

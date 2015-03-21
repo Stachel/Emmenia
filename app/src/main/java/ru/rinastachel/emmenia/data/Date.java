@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import android.util.Log;
-
 public class Date implements Comparable<Date>, Cloneable, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,8 +15,7 @@ public class Date implements Comparable<Date>, Cloneable, Serializable {
 	private DateFormat _dateFormatSimple = new SimpleDateFormat("dd MMMM", Locale.getDefault());
 	private DateFormat _dateFormatFull = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
 	private DateFormat _dateFormatDash = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-	private DateFormat _dateFormatWithTime = new SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault());	
-	
+
 	public Date () {
 		_calendar = Calendar.getInstance();
 	}
@@ -75,11 +72,7 @@ public class Date implements Comparable<Date>, Cloneable, Serializable {
 	public String getDashString() {
 		return _dateFormatDash.format(_calendar.getTime());
 	}
-	
-	public String getWithTimeString() {
-		return _dateFormatWithTime.format(_calendar.getTime());
-	}
-	
+
 	public Date getClone () {
 		return new Date((Calendar) _calendar.clone());
 	}

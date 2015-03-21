@@ -122,9 +122,7 @@ public class PrefFragment extends PreferenceFragment {
                     EntitySortedList esl = new EntitySortedList (getActivity(), null);
                     esl.setDateList(list);
                     Toast.makeText(getActivity(), R.string.toast_restore_sdcard, Toast.LENGTH_LONG).show();
-                } catch (RestoreDataException e) {
-                    Toast.makeText(getActivity(), R.string.toast_restore_sdcard_error, Toast.LENGTH_LONG).show();
-                } catch (SaveDataException e) {
+                } catch (RestoreDataException | SaveDataException e) {
                     Toast.makeText(getActivity(), R.string.toast_restore_sdcard_error, Toast.LENGTH_LONG).show();
                 }
                 break;

@@ -17,14 +17,6 @@ import ru.rinastachel.emmenia.fragments.MainFragment;
 
 public class Dialogs {
 
-
-    public static final String TITLE_RESID = "key_title";
-    public static final String MESSAGE_RESID = "key_message";
-    public static final String BUNDLE = "key_bundle";
-    public static final String POSITIVE_BUTTON_RESID = "positive_button_resid";
-    public static final String NEGATIVE_BUTTON_RESID = "negative_button_resid";
-
-
     public static Dialog dialogAddEntity (Activity activity, final MainFragment.OnAddDialogListener listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 	    builder.setTitle(R.string.add_dialog_title);

@@ -48,22 +48,22 @@ public class TwoButtonDialogFragment extends DialogFragment {
 	
 	protected void parseArguments(Bundle args) {
 
-        if (args.containsKey(Dialogs.TITLE_RESID)) {
-            _title = getResources().getString(args.getInt(Dialogs.TITLE_RESID));
+        if (args.containsKey(TITLE_RESID)) {
+            _title = getResources().getString(args.getInt(TITLE_RESID));
         }
 
-        if (args.containsKey(Dialogs.MESSAGE_RESID)) {
-            _message = getResources().getString(args.getInt(Dialogs.MESSAGE_RESID));
+        if (args.containsKey(MESSAGE_RESID)) {
+            _message = getResources().getString(args.getInt(MESSAGE_RESID));
         }
 
-        if (args.containsKey(Dialogs.POSITIVE_BUTTON_RESID)) {
-            _positiveButton = getResources().getString(args.getInt(Dialogs.POSITIVE_BUTTON_RESID));
+        if (args.containsKey(POSITIVE_BUTTON_RESID)) {
+            _positiveButton = getResources().getString(args.getInt(POSITIVE_BUTTON_RESID));
         } else {
             _positiveButton = getResources().getString(R.string.btn_yes);
         }
 
-        if (args.containsKey(Dialogs.NEGATIVE_BUTTON_RESID)) {
-            _negativeButton = getResources().getString(args.getInt(Dialogs.NEGATIVE_BUTTON_RESID));
+        if (args.containsKey(NEGATIVE_BUTTON_RESID)) {
+            _negativeButton = getResources().getString(args.getInt(NEGATIVE_BUTTON_RESID));
         } else {
             _negativeButton = getResources().getString(R.string.btn_no);
         }
@@ -89,7 +89,7 @@ public class TwoButtonDialogFragment extends DialogFragment {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(Dialogs.BUNDLE, getArguments());
+        intent.putExtra(BUNDLE, getArguments());
         getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 }
