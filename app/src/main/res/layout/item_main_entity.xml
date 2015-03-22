@@ -2,37 +2,41 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:minHeight="?android:attr/listPreferredItemHeight" >
-	
-    <RelativeLayout 
-        android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/layout"
-        >
-		<TextView android:id="@+id/date"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="5dip"
-			android:layout_marginTop="8dip"
-			style="@style/TextViewEntityDate"
-	    />
-	
-	    <TextView android:id="@+id/comment"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/date"
-			android:layout_alignLeft="@+id/date"
-            style="@style/TextViewEntityComment"
-		/>
-    </RelativeLayout>
-    
-    <TextView android:id="@+id/days"
-		android:layout_width="wrap_content"
-		android:layout_height="match_parent"
-		android:layout_alignParentRight="true"
-		android:layout_marginTop="8dip"
-        style="@style/TextViewEntityDays"
-	/>
+	android:layout_height="72dp">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:src="@drawable/ic_flower"
+        android:contentDescription="@string/empty_string"
+        />
+
+    <TextView android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/image"
+        android:layout_marginTop="8dip"
+        style="@style/TextViewEntityDate"
+        />
+
+    <TextView android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_alignLeft="@+id/date"
+        style="@style/TextViewEntityComment"
+        />
+
+    <TextView android:id="@+id/days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dip"
+        style="@style/TextViewEntityDays"
+        />
 </RelativeLayout>

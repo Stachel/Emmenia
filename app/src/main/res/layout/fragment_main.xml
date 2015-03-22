@@ -1,71 +1,55 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/text"
+        android:id="@+id/info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary_color"
-        android:paddingBottom="10pt">
+        android:layout_height="72dp">
         
         <ImageView android:id="@+id/next_image"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			android:layout_marginTop="8dip"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
 			android:src="@drawable/ic_launcher"
 			android:contentDescription="@string/empty_string"
 		/>
-        
-        <RelativeLayout 
-            android:id="@+id/layout"
-        	android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_toRightOf="@+id/next_image">
-			
-			<TextView android:id="@+id/next_date"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_margin="5dip"
-				android:layout_marginTop="8dip"
-                style="@style/TextViewNextDate"
-		    />
-		
-		    <TextView android:id="@+id/next_comment"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/next_date"
-				android:layout_alignLeft="@+id/next_date"
-                style="@style/TextViewNextComment"
-			/>
-    	</RelativeLayout>
-    
-    <TextView android:id="@+id/next_days"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		android:layout_marginTop="8dip"
-		style="@style/TextViewNextDays"
-	/>
-    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/shadow"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:src="@drawable/shadow"
-        android:scaleType="fitXY"
-        android:layout_below="@+id/text"
-        android:layout_marginBottom="20dp"
+        <TextView android:id="@+id/next_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/next_image"
+            android:layout_marginTop="8dip"
+            style="@style/TextViewNextDate"
         />
+
+        <TextView android:id="@+id/next_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/next_date"
+            android:layout_alignLeft="@+id/next_date"
+            style="@style/TextViewNextComment"
+        />
+
+        <TextView android:id="@+id/next_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dip"
+            style="@style/TextViewNextDays"
+        />
+    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
 		android:layout_height="match_parent"
-        android:layout_below="@id/shadow"
+        android:layout_below="@id/info"
 		>
 	    <ListView
 	        android:id="@+id/main_list"
@@ -82,4 +66,4 @@
 		/>
 	</FrameLayout>
 
-</RelativeLayout>
+</LinearLayout>

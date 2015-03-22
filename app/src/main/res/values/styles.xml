@@ -9,19 +9,19 @@
     <style name="TextViewNextDate">
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
 		<item name="android:textStyle">bold</item>
-		<item name="android:textColor">@color/white_color</item>
+		<item name="android:textColor">@color/primary_text</item>
 	</style>
 
     <style name="TextViewNextComment">
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:textStyle">italic</item>
-        <item name="android:textColor">@color/light_primary_color</item>
+        <item name="android:textColor">@color/secondary_text</item>
     </style>
 
     <style name="TextViewNextDays">
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textColor">@color/accent_color</item>
     </style>
 	
     <style name="TextViewEntityDate">
@@ -42,8 +42,9 @@
     </style>
 
     <style name="ListSeparator">
-        <item name="android:background">@color/divider_color</item>
-        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/dark_primary_color</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -52,7 +53,6 @@
 
     <style name="AppThemeLight" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/EmmeniaActionBar</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="EmmeniaActionBar" parent="@android:style/Widget.Holo.ActionBar">
