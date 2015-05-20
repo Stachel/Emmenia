@@ -28,8 +28,9 @@
 			android:layout_alignParentRight="true"
 			android:layout_alignParentBottom="true"
 			android:layout_marginRight="5dp"
+			android:singleLine="true"
 			android:layout_marginBottom="5dp"
-			android:textSize="11sp"
+			android:textSize="10sp"
 			android:textStyle="italic"
 		/>
     </RelativeLayout>
