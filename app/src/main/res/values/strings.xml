@@ -9,6 +9,7 @@
     <string name="action_settings">Настройки</string>
     
 	<string name="add_dialog_title">Добавление</string>
+	<string name="edit_dialog_title">Редактирование</string>
 	<string name="remove_dialog_title">Удаление</string>
 	
 	<string name="remove_dialog_message" formatted="false">Удалить запись на %s?</string>
@@ -18,7 +19,9 @@
 	
 	<string name="btn_yes">Ок</string>
 	<string name="btn_no">Отмена</string>
+	<string name="btn_remove">Удалить</string>
 	<string name="comment">Комменатрий</string>
+
 	
 	<string name="error_read_data">Ошибка чтения данных.</string>
 	<string name="error_save_data">Ошибка записи данных.</string>

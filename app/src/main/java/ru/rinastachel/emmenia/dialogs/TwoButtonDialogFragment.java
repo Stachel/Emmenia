@@ -17,7 +17,6 @@ public class TwoButtonDialogFragment extends DialogFragment {
 
     public static final String TITLE_RESID = "key_title";
     public static final String MESSAGE_RESID = "key_message";
-    public static final String BUNDLE = "key_bundle";
     public static final String POSITIVE_BUTTON_RESID = "positive_button_resid";
     public static final String NEGATIVE_BUTTON_RESID = "negative_button_resid";
     public static final String MESSAGE = "MESSAGE";
@@ -92,7 +91,7 @@ public class TwoButtonDialogFragment extends DialogFragment {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(BUNDLE, getArguments());
+        intent.putExtra(Dialogs.KEY_BUNDLE, getArguments());
         getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
     }
 }

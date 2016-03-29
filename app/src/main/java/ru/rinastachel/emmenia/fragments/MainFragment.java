@@ -26,6 +26,7 @@ import ru.rinastachel.emmenia.data.Date;
 import ru.rinastachel.emmenia.data.Entity;
 import ru.rinastachel.emmenia.data.EntitySortedList;
 import ru.rinastachel.emmenia.dialogs.Dialogs;
+import ru.rinastachel.emmenia.dialogs.ItemAddDialogFragment;
 import ru.rinastachel.emmenia.dialogs.TwoButtonDialogFragment;
 import ru.rinastachel.emmenia.exception.EntityExistException;
 import ru.rinastachel.emmenia.exception.EntityFromFutureException;
@@ -41,6 +42,7 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
 
     private static final int DIALOG_REMOVE_ENTITY = 100;
     private static final int DIALOG_ADD_ENTITY = 101;
+    private static final int DIALOG_EDIT_ENTITY = 102;
 
     public static final String KEY_POSITION = "key_position";
 
@@ -61,26 +63,16 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
         }
     }
 
-    public interface OnAddDialogListener {
-        public void addEntity (Calendar calendar, String string);
-    }
-
-    OnAddDialogListener _addDialogListener = new OnAddDialogListener(){
-        @Override
-        public void addEntity(Calendar date, String comment) {
-            addNewEntity(date, comment);
-        }
-    };
-
-    private void showRemoveEntityConfirm(int position) {
+    private void showEditEntityDialog(int position) {
         Entity entity = _adapter.getEntity(position);
         if (entity != null) {
             Bundle args = new Bundle();
-            args.putString(TwoButtonDialogFragment.MESSAGE, getString(R.string.remove_dialog_message, entity.getDate().getFullString()));
+            //args.putString(TwoButtonDialogFragment.MESSAGE, getString(R.string.remove_dialog_message, entity.getDate().getFullString()));
+            args.putString(Dialogs.KEY_TITLE, entity.getDate().getFullString());
+            args.putString(Dialogs.KEY_COMMENT, entity.getComment());
             args.putInt(KEY_POSITION, position);
-            TwoButtonDialogFragment dialog = TwoButtonDialogFragment.newInstance(args);
-            dialog.setTargetFragment(this, DIALOG_REMOVE_ENTITY);
-            dialog.show(getFragmentManager(), "DIALOG_REMOVE_ENTITY");
+
+            Dialogs.updateEntity(this, DIALOG_EDIT_ENTITY, args);
         }
     }
 
@@ -150,7 +142,7 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
         _listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                showRemoveEntityConfirm(position);
+                showEditEntityDialog(position);
                 return false;
             }
         });
@@ -201,8 +193,7 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                Dialog addDialog = Dialogs.dialogAddEntity(getActivity(), _addDialogListener);
-                addDialog.show();
+                Dialogs.addEntity(this, DIALOG_ADD_ENTITY, null);
                 return true;
 
             case R.id.action_settings:
@@ -215,11 +206,14 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
 
     @Override
     public void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK)
+        if (resultCode == Activity.RESULT_CANCELED)
             return;
+
+        Bundle args = data.getExtras().getBundle(Dialogs.KEY_BUNDLE);
+
         switch (requestCode) {
             case DIALOG_REMOVE_ENTITY:
-                Bundle args = data.getExtras().getBundle(TwoButtonDialogFragment.BUNDLE);
+
                 if (args.containsKey(KEY_POSITION)) {
                     Entity entity = _adapter.getEntity(args.getInt(KEY_POSITION));
                     if (entity != null) {
@@ -230,6 +224,35 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
                         }
                     }
                 }
+                break;
+
+            case DIALOG_EDIT_ENTITY:
+                if (args.containsKey(KEY_POSITION)) {
+                    Entity entity = _adapter.getEntity(args.getInt(KEY_POSITION));
+                    if (entity != null) {
+                        try {
+                            if (resultCode == Activity.RESULT_FIRST_USER) {
+                                _entitySortedList.remove(entity);
+                            }
+                            if (resultCode == Activity.RESULT_OK) {
+                                String comment = args.getString(Dialogs.KEY_COMMENT);
+                                _entitySortedList.update(entity, comment);
+                            }
+                        } catch (SaveDataException e) {
+                            Toast.makeText(getActivity(), getString(R.string.error_save_data), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+
+                break;
+
+            case DIALOG_ADD_ENTITY:
+                if (args.containsKey(Dialogs.KEY_DATE) && args.containsKey(Dialogs.KEY_COMMENT)) {
+                    Calendar date = (Calendar) args.getSerializable(Dialogs.KEY_DATE);
+                    String comment = args.getString(Dialogs.KEY_COMMENT);
+                    addNewEntity(date, comment);
+                }
+
                 break;
         }
     }

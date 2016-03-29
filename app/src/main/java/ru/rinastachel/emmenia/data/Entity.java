@@ -74,4 +74,8 @@ public class Entity implements Serializable, Comparable<Entity>{
 	public boolean isNew() {
 		return _isNew;
 	}
+
+	public void setComment(String comment) {
+		_comment = comment;
+	}
 }

@@ -3,7 +3,9 @@ package ru.rinastachel.emmenia.dialogs;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -16,43 +18,26 @@ import ru.rinastachel.emmenia.fragments.MainFragment;
 
 public class Dialogs {
 
-    public static Dialog dialogAddEntity (Activity activity, final MainFragment.OnAddDialogListener listener) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-	    builder.setTitle(R.string.add_dialog_title);
+	public static final String KEY_BUNDLE = "key_bundle";
+	public static final String KEY_TITLE = "key_title";
+	public static final String KEY_DATE = "key_date";
+	public static final String KEY_COMMENT = "key_comment";
 
-	    LayoutInflater inflater = activity.getLayoutInflater();
-	    final View layout = inflater.inflate(R.layout.dialog_add, null);
-	    
-	    builder.setView(layout);
-	    
-	    builder.setPositiveButton(R.string.btn_yes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            	DatePicker datePicker = (DatePicker)layout.findViewById(R.id.dialog_add_date);
-            	EditText editText = (EditText)layout.findViewById(R.id.dialog_add_comment);
-            	listener.addEntity(getCalendarFrom(datePicker), getStringFrom(editText));
-            }
-        });
-
-	    builder.setNegativeButton(R.string.btn_no, new DialogInterface.OnClickListener() {
-	               public void onClick(DialogInterface dialog, int id) {
-	            	   dialog.cancel();
-	               }
-	           });      
-	    return builder.create();
+	public static void addEntity(Fragment fragment, int requestCode, Bundle args) {
+		ItemAddDialogFragment dialog = ItemAddDialogFragment.newInstance(args);
+		dialog.setTargetFragment(fragment, requestCode);
+		dialog.show(fragment.getFragmentManager(), "DIALOG_ADD_ENTITY");
 	}
 
-	protected static String getStringFrom(EditText editText) {
-		return editText.getText().toString();
+	public static void removeEntity(Fragment fragment, int requestCode, Bundle args) {
+		TwoButtonDialogFragment dialog = TwoButtonDialogFragment.newInstance(args);
+		dialog.setTargetFragment(fragment, requestCode);
+		dialog.show(fragment.getFragmentManager(), "DIALOG_REMOVE_ENTITY");
 	}
 
-	protected static Calendar getCalendarFrom(DatePicker datePicker) {
-		int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year =  datePicker.getYear();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-        return calendar;
+	public static void updateEntity(Fragment fragment, int requestCode, Bundle args) {
+		ItemEditDialogFragment dialog = ItemEditDialogFragment.newInstance(args);
+		dialog.setTargetFragment(fragment, requestCode);
+		dialog.show(fragment.getFragmentManager(), "DIALOG_EDIT_ENTITY");
 	}
-	
-
 }

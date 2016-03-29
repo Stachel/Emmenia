@@ -57,6 +57,12 @@ public class EntitySortedList implements Serializable {
 		listChanged();
 		writeSavedData();
 	}
+
+	public void update (Entity entity, String comment) throws SaveDataException {
+		entity.setComment(comment);
+		listChanged();
+		writeSavedData();
+	}
 	
 	private boolean isContainDate(Calendar date) {
 		Date d = new Date(date);
