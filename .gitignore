@@ -2,5 +2,9 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea/runConfigurations.xml
 .DS_Store
 /build
+app/app.iml
+.idea/gradle.xml
+Emmenia.iml
