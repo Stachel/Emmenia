@@ -23,15 +23,15 @@
 	<string name="comment">Комменатрий</string>
 
 	
-	<string name="error_read_data">Ошибка чтения данных.</string>
-	<string name="error_save_data">Ошибка записи данных.</string>
+	<string name="error_read_data">Ошибка чтения данных</string>
+	<string name="error_save_data">Ошибка записи данных</string>
 	
-	<string name="error_add_exist" formatted="false">Запись на %s уже существует.</string>
-	<string name="error_add_later">Нельзя создать запись на дату больше текущей.</string>
+	<string name="error_add_exist" formatted="false">Запись на %s уже существует</string>
+	<string name="error_add_later">Нельзя создать запись на дату больше текущей</string>
 	
-	<string name="error_no_file_for_read">Нет сохраненных данных.</string>
+	<string name="error_no_file_for_read">Нет сохраненных данных</string>
 	<string name="no_date">-</string>
-	<string name="add_current_date">Добавлена запись на сегодняшнее число.</string>
+	<string name="add_current_date">Добавлена запись на сегодняшнее число</string>
 	
 	<string name="pref_group_sdcard">Резервная копия</string>
 	<string name="pref_group_other">Дополнительно</string>
@@ -45,17 +45,18 @@
 	
 	<string name="pref_remove_all_title">Удалить записи</string>
 	<string name="pref_remove_all_message">Вы уверены, что хотите удалить все записи?</string>
-	<string name="toast_remove_all">Все записи удалены.</string>
-	<string name="toast_remove_all_error">Произошла ошибка при удалении данных.</string>
+	<string name="toast_remove_all">Все записи удалены</string>
+	<string name="toast_remove">Запись удалена</string>
+	<string name="toast_remove_all_error">Произошла ошибка при удалении данных</string>
 	
 	<string name="toast_save_sdcard" formatted="false">Создана резервная копия в %s</string>
-	<string name="toast_save_sdcard_error">Произошла ошибка при создании резервной копии.</string>
+	<string name="toast_save_sdcard_error">Произошла ошибка при создании резервной копии</string>
 	
-	<string name="toast_restore_sdcard">Восстановлены данные из резервной копии.</string>
-	<string name="toast_restore_sdcard_error">Произошла ошибка при восстановлении данных из резервной копии.</string>
+	<string name="toast_restore_sdcard">Восстановлены данные из резервной копии</string>
+	<string name="toast_restore_sdcard_error">Произошла ошибка при восстановлении данных из резервной копии</string>
 	
 	<string name="pref_restore_title">Восстановление</string>
-	<string name="pref_restore_message">Загрузить данные из файла?\nСуществующие записи будут удалены.</string>
+	<string name="pref_restore_message">Загрузить данные из файла?\nСуществующие записи будут удалены</string>
 	
 	<string name="pref_theme_black">Темный</string>
 	<string name="pref_theme_white">Светлый</string>

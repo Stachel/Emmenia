@@ -1,10 +1,10 @@
 package ru.rinastachel.emmenia.fragments;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,7 +26,6 @@ import ru.rinastachel.emmenia.data.Date;
 import ru.rinastachel.emmenia.data.Entity;
 import ru.rinastachel.emmenia.data.EntitySortedList;
 import ru.rinastachel.emmenia.dialogs.Dialogs;
-import ru.rinastachel.emmenia.dialogs.ItemAddDialogFragment;
 import ru.rinastachel.emmenia.dialogs.TwoButtonDialogFragment;
 import ru.rinastachel.emmenia.exception.EntityExistException;
 import ru.rinastachel.emmenia.exception.EntityFromFutureException;
@@ -67,12 +66,22 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
         Entity entity = _adapter.getEntity(position);
         if (entity != null) {
             Bundle args = new Bundle();
-            //args.putString(TwoButtonDialogFragment.MESSAGE, getString(R.string.remove_dialog_message, entity.getDate().getFullString()));
             args.putString(Dialogs.KEY_TITLE, entity.getDate().getFullString());
             args.putString(Dialogs.KEY_COMMENT, entity.getComment());
             args.putInt(KEY_POSITION, position);
 
             Dialogs.updateEntity(this, DIALOG_EDIT_ENTITY, args);
+        }
+    }
+
+    private void showRemoveEntityDialog(int position) {
+        Entity entity = _adapter.getEntity(position);
+        if (entity != null) {
+            Bundle args = new Bundle();
+            args.putString(TwoButtonDialogFragment.MESSAGE, getString(R.string.remove_dialog_message, entity.getDate().getFullString()));
+            args.putInt(KEY_POSITION, position);
+
+            Dialogs.removeEntity(this, DIALOG_REMOVE_ENTITY, args);
         }
     }
 
@@ -139,11 +148,12 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
         // listview
         _listView = (ListView)view.findViewById(R.id.main_list);
         _listView.setAdapter(_adapter);
-        _listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+        registerForContextMenu(_listView);
+
+        _listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 showEditEntityDialog(position);
-                return false;
             }
         });
 
@@ -166,6 +176,20 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         setRetainInstance(true);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.list_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        showRemoveEntityDialog(info.position);
+
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -219,6 +243,7 @@ public class MainFragment extends Fragment implements EntitySortedList.OnEntityL
                     if (entity != null) {
                         try {
                             _entitySortedList.remove(entity);
+                            Toast.makeText(getActivity(), getString(R.string.toast_remove), Toast.LENGTH_LONG).show();
                         } catch (SaveDataException e) {
                             Toast.makeText(getActivity(), getString(R.string.error_save_data), Toast.LENGTH_LONG).show();
                         }

@@ -8,12 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-
-import java.util.Calendar;
 
 import ru.rinastachel.emmenia.R;
 
@@ -53,12 +48,6 @@ public class ItemEditDialogFragment extends DialogFragment {
         builder.setNegativeButton(R.string.btn_no, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 sendResult(Activity.RESULT_CANCELED);
-            }
-        });
-
-        builder.setNeutralButton(R.string.btn_remove, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                sendResult(Activity.RESULT_FIRST_USER);
             }
         });
 
